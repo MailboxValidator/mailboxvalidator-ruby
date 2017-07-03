@@ -16,7 +16,7 @@ module MailboxValidator
 		
 		def query_single(email)
 			@email = CGI.escape(email)
-			uri = URI("https://api.mailboxvalidator.com?key=#{@apikey}&email=#{@email}")
+			uri = URI("https://api.mailboxvalidator.com/v1/validation/single?key=#{@apikey}&email=#{@email}")
 			
 			begin
 				Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') do |http|

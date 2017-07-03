@@ -1,8 +1,8 @@
 Gem::Specification.new do |s|
   s.name        = 'mailboxvalidator_ruby'
-  s.version     = '1.0.0'
+  s.version     = '1.1.0'
   s.required_ruby_version = '>= 2.0.0'
-  s.date        = '2015-11-19'
+  s.date        = '2016-07-03'
   s.summary     = "MailboxValidator API wrapper"
   s.description = "MailboxValidator API wrapper"
   s.author      = "MailboxValidator"

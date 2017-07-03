@@ -27,6 +27,9 @@ elsif mbv.result != nil
 	puts "is_suppressed: #{mbv.result.is_suppressed}"
 	puts "is_role: #{mbv.result.is_role}"
 	puts "is_high_risk: #{mbv.result.is_high_risk}"
+	puts "is_catchall: #{mbv.result.is_catchall}"
+	puts "mailboxvalidator_score: #{mbv.result.mailboxvalidator_score}"
+	puts "time_taken: #{mbv.result.time_taken}"
 	puts "status: #{mbv.result.status}"
 	puts "credits_available: #{mbv.result.credits_available}"
 	puts "error_code: #{mbv.result.error_code}"
@@ -35,9 +38,9 @@ end
 
 == Dependencies
  
-* Go to http://www.mailboxvalidator.com/plans to sign up for a trial plan or a paid plan and you'll be given an API key.
+* Go to http://www.mailboxvalidator.com/plans#api to sign up for a FREE API plan and you'll be given an API key.
 
 == Copyright
 
-Copyright (c) 2015 MailboxValidator.com
+Copyright (c) 2017 MailboxValidator.com
 

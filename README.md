@@ -19,11 +19,11 @@ To install this module type the following:
 Dependencies
 ============
 
-An api key is required for this module to function.
+An API key is required for this module to function.
 
-Go to http://www.mailboxvalidator.com/plans to sign up for a trial plan or a paid plan and you'll be given an API key.
+Go to http://www.mailboxvalidator.com/plans#api to sign up for a FREE API plan and you'll be given an API key.
 
 Copyright
 =========
 
-Copyright (C) 2015 by MailboxValidator.com, support@mailboxvalidator.com
+Copyright (C) 2017 by MailboxValidator.com, support@mailboxvalidator.com
