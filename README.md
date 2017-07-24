@@ -65,11 +65,11 @@ end
 Functions
 =========
 
-### new
+### new()
 
 Creates a new instance of the MailboxValidator object.
 
-### query_single
+### query_single(email_address)
 
 Performs email validation on the supplied email address.
 
