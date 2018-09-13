@@ -5,6 +5,7 @@ email = "example@example.com"
 
 mbv = MailboxValidator::MBV.new()
 mbv.apikey = apikey
+
 mbv.query_single(email)
 
 if mbv.error != nil
@@ -27,6 +28,30 @@ elsif mbv.result != nil
 	puts "mailboxvalidator_score: #{mbv.result.mailboxvalidator_score}"
 	puts "time_taken: #{mbv.result.time_taken}"
 	puts "status: #{mbv.result.status}"
+	puts "credits_available: #{mbv.result.credits_available}"
+	puts "error_code: #{mbv.result.error_code}"
+	puts "error_message: #{mbv.result.error_message}"
+end
+
+mbv.disposable_email(email)
+
+if mbv.error != nil
+	puts "Error: #{mbv.error}"
+elsif mbv.result != nil
+	puts "email_address: #{mbv.result.email_address}"
+	puts "is_disposable: #{mbv.result.is_disposable}"
+	puts "credits_available: #{mbv.result.credits_available}"
+	puts "error_code: #{mbv.result.error_code}"
+	puts "error_message: #{mbv.result.error_message}"
+end
+
+mbv.free_email(email)
+
+if mbv.error != nil
+	puts "Error: #{mbv.error}"
+elsif mbv.result != nil
+	puts "email_address: #{mbv.result.email_address}"
+	puts "is_free: #{mbv.result.is_free}"
 	puts "credits_available: #{mbv.result.credits_available}"
 	puts "error_code: #{mbv.result.error_code}"
 	puts "error_message: #{mbv.result.error_message}"

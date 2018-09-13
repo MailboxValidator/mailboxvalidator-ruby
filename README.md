@@ -14,9 +14,7 @@ Installation
 
 To install this module type the following:
 
-	gem install mailboxvalidator-ruby
-
-   
+   gem install mailboxvalidator-ruby
 
 Dependencies
 ============
@@ -25,8 +23,8 @@ An API key is required for this module to function.
 
 Go to https://www.mailboxvalidator.com/plans#api to sign up for a FREE API plan and you'll be given an API key.
 
-Usage
-=====
+Usage for email validation
+==========================
 
 ```ruby
 require "mailboxvalidator_ruby"
@@ -36,6 +34,7 @@ email = "example@example.com"
 
 mbv = MailboxValidator::MBV.new()
 mbv.apikey = apikey
+
 mbv.query_single(email)
 
 if mbv.error != nil
@@ -62,6 +61,7 @@ elsif mbv.result != nil
 	puts "error_code: #{mbv.result.error_code}"
 	puts "error_message: #{mbv.result.error_message}"
 end
+
 ```
 
 Functions
@@ -185,6 +185,133 @@ The error code if there is any error. See error table below.
 ### error_message
 
 The error message if there is any error. See error table below.
+
+
+Usage for checking if email is from a disposable email provider
+===============================================================
+
+```ruby
+require "mailboxvalidator_ruby"
+
+apikey = "MY_API_KEY"
+email = "example@example.com"
+
+mbv = MailboxValidator::MBV.new()
+mbv.apikey = apikey
+
+mbv.disposable_email(email)
+
+if mbv.error != nil
+	puts "Error: #{mbv.error}"
+elsif mbv.result != nil
+	puts "email_address: #{mbv.result.email_address}"
+	puts "is_disposable: #{mbv.result.is_disposable}"
+	puts "credits_available: #{mbv.result.credits_available}"
+	puts "error_code: #{mbv.result.error_code}"
+	puts "error_message: #{mbv.result.error_message}"
+end
+
+```
+
+Functions
+=========
+
+### new()
+
+Creates a new instance of the MailboxValidator object.
+
+### disposable_email(email_address)
+
+Checks if the supplied email address is from a disposable email provider.
+
+Result Fields
+=============
+
+### email_address
+
+The input email address.
+
+### is_disposable
+
+Whether the email address is a temporary one from a disposable email provider.
+
+Return values: True, False
+
+### credits_available
+
+The number of credits left to perform validations.
+
+### error_code
+
+The error code if there is any error. See error table below.
+
+### error_message
+
+The error message if there is any error. See error table below.
+
+
+Usage for checking if email is from a free email provider
+=========================================================
+
+```ruby
+require "mailboxvalidator_ruby"
+
+apikey = "MY_API_KEY"
+email = "example@example.com"
+
+mbv = MailboxValidator::MBV.new()
+mbv.apikey = apikey
+
+mbv.free_email(email)
+
+if mbv.error != nil
+	puts "Error: #{mbv.error}"
+elsif mbv.result != nil
+	puts "email_address: #{mbv.result.email_address}"
+	puts "is_free: #{mbv.result.is_free}"
+	puts "credits_available: #{mbv.result.credits_available}"
+	puts "error_code: #{mbv.result.error_code}"
+	puts "error_message: #{mbv.result.error_message}"
+end
+
+```
+
+Functions
+=========
+
+### new()
+
+Creates a new instance of the MailboxValidator object.
+
+### free_email(email_address)
+
+Checks if the supplied email address is from a free email provider.
+
+Result Fields
+=============
+
+### email_address
+
+The input email address.
+
+### is_free
+
+Whether the email address is from a free email provider like Gmail or Hotmail.
+
+Return values: True, False
+
+### credits_available
+
+The number of credits left to perform validations.
+
+### error_code
+
+The error code if there is any error. See error table below.
+
+### error_message
+
+The error message if there is any error. See error table below.
+
 
 Errors
 ======
