@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'mailboxvalidator_ruby'
-  s.version     = '1.2.0'
+  s.version     = '1.2.1'
   s.required_ruby_version = '>= 2.0.0'
   s.date        = '2018-09-13'
   s.summary     = "MailboxValidator API wrapper"
@@ -8,6 +8,6 @@ Gem::Specification.new do |s|
   s.author      = "MailboxValidator"
   s.email       = 'support@mailboxvalidator'
   s.files       = ["lib/mailboxvalidator_ruby.rb","test/test.rb","README.rdoc"]
-  s.homepage    = 'http://www.mailboxvalidator.com/ruby'
+  s.homepage    = 'https://www.mailboxvalidator.com/ruby'
   s.license     = 'MIT'
 end

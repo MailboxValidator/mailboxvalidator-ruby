@@ -67,5 +67,5 @@ end
 
 == Copyright
 
-Copyright (c) 2018 MailboxValidator.com
+Copyright (c) 2020 MailboxValidator.com
 
