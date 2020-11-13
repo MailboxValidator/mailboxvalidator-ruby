@@ -1,3 +1,6 @@
+[![Latest Stable Version](https://img.shields.io/gem/v/mailboxvalidator_ruby.svg)](https://rubygems.org/gems/mailboxvalidator_ruby)
+[![Total Downloads](https://img.shields.io/gem/dt/mailboxvalidator_ruby.svg)](https://rubygems.org/gems/mailboxvalidator_ruby)
+
 MailboxValidator Ruby Module
 ============================
 
