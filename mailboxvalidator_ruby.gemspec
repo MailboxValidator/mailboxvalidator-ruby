@@ -9,5 +9,5 @@ Gem::Specification.new do |s|
   s.email       = 'support@mailboxvalidator'
   s.files       = ["lib/mailboxvalidator_ruby.rb","test/test.rb","README.rdoc"]
   s.homepage    = 'http://www.mailboxvalidator.com/ruby'
-  s.license     = 'LGPL-3.0+'
+  s.license     = 'MIT'
 end
