@@ -4,7 +4,7 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 2.0.0'
   s.date        = '2018-09-13'
   s.summary     = "MailboxValidator API wrapper"
-  s.description = "MailboxValidator API wrapper"
+  s.description = "Enable users to block disposal email, detect free email and validate if an email is valid"
   s.author      = "MailboxValidator"
   s.email       = 'support@mailboxvalidator'
   s.files       = ["lib/mailboxvalidator_ruby.rb","test/test.rb","README.rdoc"]
