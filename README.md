@@ -18,7 +18,7 @@ Installation
 
 To install this module type the following:
 
-   `gem install mailboxvalidator-ruby`
+   `gem install mailboxvalidator_ruby`
 
 Dependencies
 ============
