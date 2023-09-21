@@ -16,7 +16,7 @@ module MailboxValidator
 		
 		def query_single(email)
 			@email = CGI.escape(email)
-			uri = URI("https://api.mailboxvalidator.com/v1/validation/single?key=#{@apikey}&email=#{@email}")
+			uri = URI("https://api.mailboxvalidator.com/v2/validation/single?key=#{@apikey}&email=#{@email}")
 			
 			begin
 				Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') do |http|
@@ -28,7 +28,7 @@ module MailboxValidator
 						@error = nil
 					else
 						@error = "#{response.code} - #{response.message}"
-						@result = nil
+						@result = JSON.parse(response.body, object_class: OpenStruct)
 					end
 				end
 			rescue Exception => e
@@ -39,7 +39,7 @@ module MailboxValidator
 		
 		def disposable_email(email)
 			@email = CGI.escape(email)
-			uri = URI("https://api.mailboxvalidator.com/v1/email/disposable?key=#{@apikey}&email=#{@email}")
+			uri = URI("https://api.mailboxvalidator.com/v2/email/disposable?key=#{@apikey}&email=#{@email}")
 			
 			begin
 				Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') do |http|
@@ -51,7 +51,7 @@ module MailboxValidator
 						@error = nil
 					else
 						@error = "#{response.code} - #{response.message}"
-						@result = nil
+						@result = JSON.parse(response.body, object_class: OpenStruct)
 					end
 				end
 			rescue Exception => e
@@ -62,7 +62,7 @@ module MailboxValidator
 		
 		def free_email(email)
 			@email = CGI.escape(email)
-			uri = URI("https://api.mailboxvalidator.com/v1/email/free?key=#{@apikey}&email=#{@email}")
+			uri = URI("https://api.mailboxvalidator.com/v2/email/free?key=#{@apikey}&email=#{@email}")
 			
 			begin
 				Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') do |http|
@@ -74,7 +74,7 @@ module MailboxValidator
 						@error = nil
 					else
 						@error = "#{response.code} - #{response.message}"
-						@result = nil
+						@result = JSON.parse(response.body, object_class: OpenStruct)
 					end
 				end
 			rescue Exception => e

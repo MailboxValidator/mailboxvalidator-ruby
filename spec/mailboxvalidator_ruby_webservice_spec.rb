@@ -2,10 +2,12 @@ require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe "MailboxvalidatorRuby" do
   it "work correctly with invalid api key" do
-    mbv = MailboxValidator::MBV.new()
-    mbv.apikey = $api_key
-    mbv.query_single('example@example.com')
-    expect(mbv.result.error_message).to eq 'API key not found.'
+    if $api_key == 'YOUR_API_KEY'
+      mbv = MailboxValidator::MBV.new()
+      mbv.apikey = $api_key
+      mbv.query_single('example@example.com')
+      expect(mbv.result.error.error_message).to eq 'API key not found.'
+    end
   end
 
   it "work correctly with api key exists" do
@@ -28,9 +30,9 @@ describe "MailboxvalidatorRuby" do
     mbv.apikey = $api_key
     mbv.query_single('example@example.com')
     if $api_key == 'YOUR_API_KEY'
-      expect(mbv.result.error_code).to eq '101'
+      expect(mbv.result.error.error_code).to eq 10001
     else
-      expect(mbv.result.status).to eq 'False'
+      expect(mbv.result.status).to eq false
     end
   end
 
@@ -39,9 +41,9 @@ describe "MailboxvalidatorRuby" do
     mbv.apikey = $api_key
     mbv.disposable_email('example@example.com')
     if $api_key == 'YOUR_API_KEY'
-      expect(mbv.result.error_code).to eq '101'
+      expect(mbv.result.error.error_code).to eq 10001
     else
-      expect(mbv.result.status).to eq 'True'
+      expect(mbv.result.is_disposable).to eq false
     end
   end
 
@@ -50,9 +52,9 @@ describe "MailboxvalidatorRuby" do
     mbv.apikey = $api_key
     mbv.free_email('example@example.com')
     if $api_key == 'YOUR_API_KEY'
-      expect(mbv.result.error_code).to eq '101'
+      expect(mbv.result.error.error_code).to eq 10001
     else
-      expect(mbv.result.status).to eq 'False'
+      expect(mbv.result.is_free).to eq false
     end
   end
 

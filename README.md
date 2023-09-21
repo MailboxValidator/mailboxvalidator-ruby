@@ -43,24 +43,24 @@ Performs email validation on the supplied email address.
 | ------------- | ------------------------------------------------------------ |
 | email_address | The input email address.                                     |
 | domain        | The domain of the email address.                             |
-| is_free       | Whether the email address is from a free email provider like Gmail or Hotmail. Return values: True, False |
-| is_syntax     | Whether the email address is syntactically correct. Return values: True, False |
-| is_domain     | Whether the email address has a valid MX record in its DNS entries. Return values: True, False, -  (- means not applicable) |
-| is_smtp       | Whether the mail servers specified in the MX records are responding to connections. Return values: True, False, -  (- means not applicable) |
-| is_verified   | Whether the mail server confirms that the email address actually exist. Return values: True, False, -  (- means not applicable) |
-| is_server_down | Whether the mail server is currently down or unresponsive. Return values: True, False, -&nbsp;&nbsp;&nbsp;(- means not applicable) |
-| is_greylisted | Whether the mail server employs greylisting where an email has to be sent a second time at a later time. Return values: True, False, -&nbsp;&nbsp;&nbsp;(- means not applicable) |
-| is_disposable | Whether the email address is a temporary one from a disposable email provider. Return values: True, False, -&nbsp;&nbsp;&nbsp;(- means not applicable) |
-| is_suppressed | Whether the email address is in our blacklist. Return values: True, False, -&nbsp;&nbsp;&nbsp;(- means not applicable) |
-| is_role | Whether the email address is a role-based email address like admin@example.net or webmaster@example.net. Return values: True, False, -&nbsp;&nbsp;&nbsp;(- means not applicable) |
-| is_high_risk | Whether the email address contains high risk keywords. Return values: True, False, -&nbsp;&nbsp;&nbsp;(- means not applicable) |
-| is_catchall | Whether the email address is a catch-all address. Return values: True, False, Unknown, -&nbsp;&nbsp;&nbsp;(- means not applicable) |
+| is_free       | Whether the email address is from a free email provider like Gmail or Hotmail. Return values: true, false, null  (null means not applicable) |
+| is_syntax     | Whether the email address is syntactically correct. Return values: true, false |
+| is_domain     | Whether the email address has a valid MX record in its DNS entries. Return values: true, false, null  (null means not applicable) |
+| is_smtp       | Whether the mail servers specified in the MX records are responding to connections. Return values: true, false, null  (null means not applicable) |
+| is_verified   | Whether the mail server confirms that the email address actually exist. Return values: true, false, null  (null means not applicable) |
+| is_server_down | Whether the mail server is currently down or unresponsive. Return values: true, false, null  (null means not applicable) |
+| is_greylisted | Whether the mail server employs greylisting where an email has to be sent a second time at a later time. Return values: true, false, null  (null means not applicable) |
+| is_disposable | Whether the email address is a temporary one from a disposable email provider. Return values: true, false, null  (null means not applicable) |
+| is_suppressed | Whether the email address is in our blacklist. Return values: true, false, null  (null means not applicable) |
+| is_role | Whether the email address is a role-based email address like admin@example.net or webmaster@example.net. Return values: true, false, null  (null means not applicable) |
+| is_high_risk | Whether the email address contains high risk keywords. Return values: true, false, null  (null means not applicable) |
+| is_catchall | Whether the email address is a catch-all address. Return values: true, false, null  (null means not applicable) |
 | mailboxvalidator_score | Email address reputation score. Score > 0.70 means good; score > 0.40 means fair; score <= 0.40 means poor. |
 | time_taken | The time taken to get the results in seconds. |
-| status | Whether our system think the email address is valid based on all the previous fields. Return values: True, False |
+| status | Whether our system think the email address is valid based on all the previous fields. Return values: true, false |
 | credits_available | The number of credits left to perform validations. |
-| error_code | The error code if there is any error. See error table in the below section. |
-| error_message | The error message if there is any error. See error table in the below section. |
+| error.error_code | The error code if there is any error. See error table in the below section. |
+| error.error_message | The error message if there is any error. See error table in the below section. |
 
 ## disposable_email(email_address)
 
@@ -71,10 +71,10 @@ Checks if the supplied email address is from a disposable email provider.
 | Field Name | Description |
 |-----------|------------|
 | email_address | The input email address. |
-| is_disposable | Whether the email address is a temporary one from a disposable email provider. Return values: True, False |
+| is_disposable | Whether the email address is a temporary one from a disposable email provider. Return values: true, false |
 | credits_available | The number of credits left to perform validations. |
-| error_code | The error code if there is any error. See error table in the below section. |
-| error_message | The error message if there is any error. See error table in the below section. |
+| error.error_code | The error code if there is any error. See error table in the below section. |
+| error.error_message | The error message if there is any error. See error table in the below section. |
 
 ## free_email(email_address)
 
@@ -85,10 +85,10 @@ Checks if the supplied email address is from a free email provider.
 | Field Name | Description |
 |-----------|------------|
 | email_address | The input email address. |
-| is_free | Whether the email address is from a free email provider like Gmail or Hotmail. Return values: True, False |
+| is_free | Whether the email address is from a free email provider like Gmail or Hotmail. Return values: true, false |
 | credits_available | The number of credits left to perform validations. |
-| error_code | The error code if there is any error. See error table in the below section. |
-| error_message | The error message if there is any error. See error table below. |
+| error.error_code | The error code if there is any error. See error table in the below section. |
+| error.error_message | The error message if there is any error. See error table below. |
 
 # Sample Code
 
@@ -106,7 +106,10 @@ mbv.apikey = apikey
 
 mbv.query_single(email)
 
-if mbv.error != nil
+if mbv.error != nil && mbv.result != nil
+	puts "error_code: #{mbv.result.error.error_code}"
+	puts "error_message: #{mbv.result.error.error_message}"
+elsif mbv.error != nil
 	puts "Error: #{mbv.error}"
 elsif mbv.result != nil
 	puts "email_address: #{mbv.result.email_address}"
@@ -127,8 +130,6 @@ elsif mbv.result != nil
 	puts "time_taken: #{mbv.result.time_taken}"
 	puts "status: #{mbv.result.status}"
 	puts "credits_available: #{mbv.result.credits_available}"
-	puts "error_code: #{mbv.result.error_code}"
-	puts "error_message: #{mbv.result.error_message}"
 end
 
 ```
@@ -147,14 +148,15 @@ mbv.apikey = apikey
 
 mbv.disposable_email(email)
 
-if mbv.error != nil
+if mbv.error != nil && mbv.result != nil
+	puts "error_code: #{mbv.result.error.error_code}"
+	puts "error_message: #{mbv.result.error.error_message}"
+elsif mbv.error != nil
 	puts "Error: #{mbv.error}"
 elsif mbv.result != nil
 	puts "email_address: #{mbv.result.email_address}"
 	puts "is_disposable: #{mbv.result.is_disposable}"
 	puts "credits_available: #{mbv.result.credits_available}"
-	puts "error_code: #{mbv.result.error_code}"
-	puts "error_message: #{mbv.result.error_message}"
 end
 
 ```
@@ -173,14 +175,15 @@ mbv.apikey = apikey
 
 mbv.free_email(email)
 
-if mbv.error != nil
+if mbv.error != nil && mbv.result != nil
+	puts "error_code: #{mbv.result.error.error_code}"
+	puts "error_message: #{mbv.result.error.error_message}"
+elsif mbv.error != nil
 	puts "Error: #{mbv.error}"
 elsif mbv.result != nil
 	puts "email_address: #{mbv.result.email_address}"
 	puts "is_free: #{mbv.result.is_free}"
 	puts "credits_available: #{mbv.result.credits_available}"
-	puts "error_code: #{mbv.result.error_code}"
-	puts "error_message: #{mbv.result.error_message}"
 end
 
 ```
@@ -191,14 +194,15 @@ Errors
 
 | error_code | error_message |
 | ---------- | ------------- |
-| 100 | Missing parameter. |
-| 101 | API key not found. |
-| 102 | API key disabled. |
-| 103 | API key expired. |
-| 104 | Insufficient credits. |
-| 105 | Unknown error. |
+| 10000 | Missing parameter. |
+| 10001 | API key not found. |
+| 10002 | API key disabled. |
+| 10003 | API key expired. |
+| 10004 | Insufficient credits. |
+| 10005 | Unknown error. |
+| 10006 | Invalid email syntax. |
 
 Copyright
 =========
 
-Copyright (C) 2018-2020 by MailboxValidator.com, support@mailboxvalidator.com
+Copyright (C) 2023 by MailboxValidator.com, support@mailboxvalidator.com
