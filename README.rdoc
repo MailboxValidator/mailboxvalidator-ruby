@@ -70,5 +70,5 @@ end
 
 == Copyright
 
-Copyright (c) 2023 MailboxValidator.com
+Copyright (c) 2024 MailboxValidator.com
 
